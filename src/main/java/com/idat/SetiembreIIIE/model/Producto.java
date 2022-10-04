@@ -1,10 +1,19 @@
 package com.idat.SetiembreIIIE.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="productos")
@@ -18,6 +27,24 @@ public class Producto {
 	private String descripcion;
 	private Double precio;
 	private Integer stock;
+	
+	@OneToOne
+	private Proveedor proveedor;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "producto_cliente",
+			joinColumns = @JoinColumn(
+					name = "id_producto",
+					nullable = false,
+					unique = true,
+					foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_producto) references productos(id_producto)")
+					
+			)
+			
+	)
+	
+	private List<Cliente> clientes = new ArrayList<>();
 	
 	public Integer getIdProducto() {
 		return idProducto;

@@ -3,6 +3,7 @@ package com.idat.SetiembreIIIE.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -31,17 +32,21 @@ public class Producto {
 	@OneToOne
 	private Proveedor proveedor;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinTable(
 			name = "producto_cliente",
 			joinColumns = @JoinColumn(
 					name = "id_producto",
 					nullable = false,
 					unique = true,
-					foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_producto) references productos(id_producto)")
-					
-			)
-			
+					foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_producto) references productos (id_producto)")				
+			),
+			inverseJoinColumns = @JoinColumn(
+					name = "id_cliente",
+					nullable = false,
+					unique = true,
+					foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_cliente) references clientes (id_cliente)")					
+			)			
 	)
 	
 	private List<Cliente> clientes = new ArrayList<>();

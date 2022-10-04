@@ -23,7 +23,6 @@ public class Proveedor {
 	@OneToOne
 	private Producto producto;
 	
-	private List<Cliente> clientes = new ArrayList<>();
 	
 	public Integer getIdProveedor() {
 		return idProveedor;

@@ -1,9 +1,12 @@
 package com.idat.SetiembreIIIE.model;
 
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +19,16 @@ public class Item {
 	private String item;
 	private Integer cantidad;
 	private Double total;
+	
+	@ManyToOne
+	@JoinColumn(
+			name = "id_cliente",
+			nullable = false,
+			unique = true,
+			foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_cliente) references clientes (id_cliente)")	
+	)
+	private Cliente cliente;
+	
 	public Integer getIdItem() {
 		return idItem;
 	}

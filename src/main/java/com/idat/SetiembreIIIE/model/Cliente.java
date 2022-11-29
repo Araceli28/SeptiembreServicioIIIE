@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "clientes")
+@Table(name="clientes")
 public class Cliente {
 
 	@Id
@@ -22,12 +22,11 @@ public class Cliente {
 	private String cliente;
 	private String celular;
 	
-	
 	@ManyToMany(mappedBy = "clientes", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private List<Producto> productos = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "cliente")
-	private List<Item> items = new ArrayList<>();
+	private List<Item> items =new ArrayList<>();
 	
 	public Integer getIdCliente() {
 		return idCliente;

@@ -10,9 +10,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "items")
+@Table(name="items")
 public class Item {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idItem;
@@ -22,10 +22,10 @@ public class Item {
 	
 	@ManyToOne
 	@JoinColumn(
-			name = "id_cliente",
+			name="id_cliente",
 			nullable = false,
 			unique = true,
-			foreignKey = @ForeignKey(foreignKeyDefinition = "foreing key(id_cliente) references clientes (id_cliente)")	
+			foreignKey = @ForeignKey(foreignKeyDefinition = "foreign key (id_cliente) references clientes(id_cliente)")
 	)
 	private Cliente cliente;
 	
@@ -53,7 +53,6 @@ public class Item {
 	public void setTotal(Double total) {
 		this.total = total;
 	}
-	
 	
 
 }
